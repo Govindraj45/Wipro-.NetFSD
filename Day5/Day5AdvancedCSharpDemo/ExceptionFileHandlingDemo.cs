@@ -1,76 +1,90 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 
-namespace Day5AdvancedCSharpDemo
+static class ExceptionFileHandlingDemo
 {
-    public class CustomDemoException : Exception
+    public static void Run()
     {
-        public CustomDemoException(string message) : base(message) { }
-    }
+        ConsoleOutput.WriteHeading("Exception and File Handling");
 
-    public class ExceptionFileHandlingDemo
-    {
-        public static void RunDemo()
+        string filePath = Path.Combine(Environment.CurrentDirectory, "day5-orders.txt");
+
+        try
         {
-            Console.WriteLine("--- Exception & File Handling Demo ---\n");
-            
-            string filePath = "demo_file.txt";
-
-            // 1. File Writing and Custom Exception
-            try
+            List<string> orderLines = new()
             {
-                Console.WriteLine("Attempting to write to file...");
-                using (StreamWriter writer = new StreamWriter(filePath))
+                "1001,Laptop,75000",
+                "1002,Mouse,800",
+                "InvalidLineForDemo"
+            };
+
+            File.WriteAllLines(filePath, orderLines);
+            Console.WriteLine($"File created: {filePath}");
+
+            string[] savedOrders = File.ReadAllLines(filePath);
+            foreach (string line in savedOrders)
+            {
+                try
                 {
-                    writer.WriteLine("Hello from C# File Handling!");
-                    writer.WriteLine("This is the second line.");
+                    FileOrder order = FileOrderParser.Parse(line);
+                    Console.WriteLine($"Parsed order: {order.OrderId}, {order.ProductName}, Rs. {order.Price}");
                 }
-                Console.WriteLine($"Successfully wrote to {filePath}");
-
-                // Simulate throwing a custom exception
-                Console.WriteLine("Simulating an error condition...");
-                throw new CustomDemoException("This is a simulated custom exception.");
-            }
-            catch (CustomDemoException ex)
-            {
-                Console.WriteLine($"[Caught Custom Exception]: {ex.Message}");
-            }
-            catch (IOException ex)
-            {
-                Console.WriteLine($"[Caught IO Exception]: {ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"[Caught General Exception]: {ex.Message}");
-            }
-            finally
-            {
-                Console.WriteLine("Finally block executed after writing attempt.\n");
-            }
-
-            // 2. File Reading
-            try
-            {
-                Console.WriteLine("Attempting to read from file...");
-                if (File.Exists(filePath))
+                catch (FormatException exception)
                 {
-                    using (StreamReader reader = new StreamReader(filePath))
-                    {
-                        string content = reader.ReadToEnd();
-                        Console.WriteLine("File Content:");
-                        Console.WriteLine(content);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("File does not exist.");
+                    Console.WriteLine($"Skipped invalid line: {exception.Message}");
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error reading file: {ex.Message}");
-            }
-            Console.WriteLine();
+        }
+        catch (IOException exception)
+        {
+            Console.WriteLine($"File handling error: {exception.Message}");
+        }
+        catch (UnauthorizedAccessException exception)
+        {
+            Console.WriteLine($"Permission error: {exception.Message}");
+        }
+        finally
+        {
+            Console.WriteLine("File handling demo completed.");
         }
     }
+}
+
+static class FileOrderParser
+{
+    public static FileOrder Parse(string line)
+    {
+        string[] parts = line.Split(',');
+        if (parts.Length != 3)
+        {
+            throw new FormatException($"'{line}' does not contain OrderId, ProductName, and Price.");
+        }
+
+        if (!int.TryParse(parts[0], out int orderId))
+        {
+            throw new FormatException($"'{parts[0]}' is not a valid order id.");
+        }
+
+        if (!decimal.TryParse(parts[2], out decimal price))
+        {
+            throw new FormatException($"'{parts[2]}' is not a valid price.");
+        }
+
+        return new FileOrder(orderId, parts[1], price);
+    }
+}
+
+class FileOrder
+{
+    public FileOrder(int orderId, string productName, decimal price)
+    {
+        OrderId = orderId;
+        ProductName = productName;
+        Price = price;
+    }
+
+    public int OrderId { get; }
+    public string ProductName { get; }
+    public decimal Price { get; }
 }

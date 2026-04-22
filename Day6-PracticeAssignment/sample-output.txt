@@ -1,0 +1,17 @@
+Order Placed: 101
+Customer: Govindraj
+Amount: Rs. 4999.5
+Email sent to customer Govindraj for Order 101
+SMS sent to customer Govindraj for Order 101
+Order logged successfully: Order 101, Amount Rs. 4999.5
+
+Unsubscribing SMS service...
+Order Placed: 102
+Customer: Aarav
+Amount: Rs. 2499
+Email sent to customer Aarav for Order 102
+Order logged successfully: Order 102, Amount Rs. 2499
+
+Action<T> bonus delegate demo:
+Order Placed: 103
+Action delegate notified admin for Order 103

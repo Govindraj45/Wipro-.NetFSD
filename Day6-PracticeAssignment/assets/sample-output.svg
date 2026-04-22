@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560">
+  <rect width="980" height="560" rx="18" fill="#111827"/>
+  <rect x="0" y="0" width="980" height="46" rx="18" fill="#1f2937"/>
+  <circle cx="26" cy="23" r="7" fill="#ef4444"/>
+  <circle cx="50" cy="23" r="7" fill="#f59e0b"/>
+  <circle cx="74" cy="23" r="7" fill="#22c55e"/>
+  <text x="30" y="82" fill="#d1d5db" font-family="Menlo, Consolas, monospace" font-size="20">Order Placed: 101</text>
+  <text x="30" y="116" fill="#d1d5db" font-family="Menlo, Consolas, monospace" font-size="20">Customer: Govindraj</text>
+  <text x="30" y="150" fill="#d1d5db" font-family="Menlo, Consolas, monospace" font-size="20">Amount: Rs. 4999.5</text>
+  <text x="30" y="184" fill="#34d399" font-family="Menlo, Consolas, monospace" font-size="20">Email sent to customer Govindraj for Order 101</text>
+  <text x="30" y="218" fill="#60a5fa" font-family="Menlo, Consolas, monospace" font-size="20">SMS sent to customer Govindraj for Order 101</text>
+  <text x="30" y="252" fill="#fbbf24" font-family="Menlo, Consolas, monospace" font-size="20">Order logged successfully: Order 101, Amount Rs. 4999.5</text>
+  <text x="30" y="320" fill="#d1d5db" font-family="Menlo, Consolas, monospace" font-size="20">Unsubscribing SMS service...</text>
+  <text x="30" y="354" fill="#d1d5db" font-family="Menlo, Consolas, monospace" font-size="20">Order Placed: 102</text>
+  <text x="30" y="388" fill="#34d399" font-family="Menlo, Consolas, monospace" font-size="20">Email sent to customer Aarav for Order 102</text>
+  <text x="30" y="422" fill="#fbbf24" font-family="Menlo, Consolas, monospace" font-size="20">Order logged successfully: Order 102, Amount Rs. 2499</text>
+  <text x="30" y="490" fill="#d1d5db" font-family="Menlo, Consolas, monospace" font-size="20">Action&lt;T&gt; bonus delegate demo: Order 103</text>
+</svg>

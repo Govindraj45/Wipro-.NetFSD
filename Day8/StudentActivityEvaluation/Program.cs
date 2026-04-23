@@ -13,9 +13,6 @@ namespace StudentActivityEvaluation
         public int TotalMarks { get; set; }
     }
 
-    // Delegate to handle student evaluation logic
-    public delegate void StudentEvaluator(Student student);
-
     class Program
     {
         static void Main(string[] args)
@@ -28,39 +25,56 @@ namespace StudentActivityEvaluation
                 new Student { Name = "David", Scores = new List<int> { 30, 20, 40 }, Attendance = 60, Participation = 2 }
             };
 
-            // Use an anonymous method to:
-            // - Calculate total marks
-            // - Display student performance
-            StudentEvaluator evaluateStudent = delegate (Student student)
+            // US1 & US5: Calculate total marks using Func + Anonymous Method (delegate keyword)
+            Func<Student, int> calculateTotalMarks = delegate (Student s)
             {
-                student.TotalMarks = student.Scores.Sum() + student.Attendance + student.Participation;
-                
-                Console.WriteLine($"Student: {student.Name}");
-                Console.WriteLine($"Scores: {string.Join(", ", student.Scores)}");
-                Console.WriteLine($"Attendance: {student.Attendance}%");
-                Console.WriteLine($"Participation: {student.Participation}");
-                Console.WriteLine($"Total Marks: {student.TotalMarks}");
+                return s.Scores.Sum() + s.Attendance + s.Participation;
+            };
+
+            // Apply total marks calculation
+            foreach (var student in students)
+            {
+                student.TotalMarks = calculateTotalMarks(student);
+            }
+
+            // US2 & US6: Display student details using Action + Lambda (=> syntax)
+            Action<Student> displayStudent = s =>
+            {
+                Console.WriteLine($"Student: {s.Name}");
+                Console.WriteLine($"Scores: {string.Join(", ", s.Scores)}");
+                Console.WriteLine($"Attendance: {s.Attendance}%");
+                Console.WriteLine($"Participation: {s.Participation}");
+                Console.WriteLine($"Total Marks: {s.TotalMarks}");
                 Console.WriteLine(new string('-', 30));
             };
 
             Console.WriteLine("--- Student Evaluation Details ---");
             foreach (var student in students)
             {
-                evaluateStudent(student);
+                displayStudent(student);
             }
 
-            // Use a lambda expression to:
-            // - Check if a student is eligible (e.g., average marks > 50)
-            Func<Student, bool> isEligible = s => s.Scores.Average() > 50;
+            // US3: Check if a student is eligible (marks > 50) using Predicate + Lambda
+            Predicate<Student> isEligible = s => s.Scores.Average() > 50;
 
-            // Use a lambda expression to:
-            // - Filter a list of students based on performance
-            List<Student> eligibleStudents = students.Where(isEligible).ToList();
-
-            Console.WriteLine("\n--- Eligible Students (Average Score > 50) ---");
-            foreach (var student in eligibleStudents)
+            // Display eligible students (using the predicate)
+            Console.WriteLine("\n--- Eligible Students (Average Marks > 50) ---");
+            foreach (var student in students)
             {
-                Console.WriteLine($"- {student.Name} (Average Score: {student.Scores.Average():F2})");
+                if (isEligible(student))
+                {
+                    Console.WriteLine($"- {student.Name} (Average: {student.Scores.Average():F2})");
+                }
+            }
+
+            // US4: Filter students scoring above 75 using Predicate + List.FindAll()
+            Predicate<Student> isTopPerformer = s => s.Scores.Average() > 75;
+            List<Student> topStudents = students.FindAll(isTopPerformer);
+
+            Console.WriteLine("\n--- Top Performers (Average Marks > 75) ---");
+            foreach (var student in topStudents)
+            {
+                Console.WriteLine($"- {student.Name} (Average: {student.Scores.Average():F2})");
             }
         }
     }

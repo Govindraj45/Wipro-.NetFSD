@@ -1,0 +1,18 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="home-panel">
+    <p class="eyebrow">Day10 Practice Assignment 3</p>
+    <h1>Razor Pages Item Manager</h1>
+    <p>
+        This app uses Razor syntax, PageModel classes, property binding, validation,
+        and dynamic data updates after form submissions.
+    </p>
+    <div class="home-actions">
+        <a class="button" asp-page="/Items/Index">View items</a>
+        <a class="link-button" asp-page="/Items/Create">Add item</a>
+    </div>
+</section>

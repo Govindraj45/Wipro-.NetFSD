@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    color: #1f2937;
+    background: #f5f7fb;
+}
+
+.shell {
+    width: min(720px, calc(100% - 32px));
+    margin: 48px auto;
+    padding: 24px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+button,
+a {
+    display: inline-block;
+    margin-top: 8px;
+}
+
+button {
+    padding: 8px 14px;
+    border: 0;
+    border-radius: 6px;
+    color: #ffffff;
+    background: #2563eb;
+    cursor: pointer;
+}
+
+.message {
+    min-height: 24px;
+    font-weight: 700;
+}

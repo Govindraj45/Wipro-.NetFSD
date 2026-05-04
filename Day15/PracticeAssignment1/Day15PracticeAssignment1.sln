@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddlewareStaticFilesApp", "MiddlewareStaticFilesApp\MiddlewareStaticFilesApp.csproj", "{F399F5E3-0629-4AD9-8161-FDF4BA50F10F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorPagesItemsApp", "RazorPagesItemsApp\RazorPagesItemsApp.csproj", "{3B757CB2-79DF-4A3D-9718-B92F5B41032D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F399F5E3-0629-4AD9-8161-FDF4BA50F10F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F399F5E3-0629-4AD9-8161-FDF4BA50F10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F399F5E3-0629-4AD9-8161-FDF4BA50F10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F399F5E3-0629-4AD9-8161-FDF4BA50F10F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B757CB2-79DF-4A3D-9718-B92F5B41032D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B757CB2-79DF-4A3D-9718-B92F5B41032D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B757CB2-79DF-4A3D-9718-B92F5B41032D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B757CB2-79DF-4A3D-9718-B92F5B41032D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

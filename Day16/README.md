@@ -20,4 +20,11 @@ This folder contains the SQL Server solution for the Day 16 case study.
 | T8 | JOIN and `GROUP BY` rewrite of T5 |
 | T9 | JOIN, derived table, and location filtering |
 
-Run the script in a practice database because it recreates the demo `Employees` and `Departments` tables.
+## Run in VS Code
+
+1. Install the SQL Server (mssql) extension in VS Code.
+2. Open `SubqueriesAndJoinsCaseStudy.sql`.
+3. Connect to your SQL Server practice database.
+4. Run the script from top to bottom.
+
+Use a practice database because the script recreates the demo `Employees` and `Departments` tables.

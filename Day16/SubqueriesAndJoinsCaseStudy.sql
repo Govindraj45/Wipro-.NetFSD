@@ -1,10 +1,11 @@
 /*
 Day 16: Case Study based on Subqueries and Joins
 
-How to run in SQL Server:
-1. Open this file in SQL Server Management Studio or VS Code with the mssql extension.
-2. Connect to a practice database.
-3. Run the complete script from top to bottom.
+How to run in VS Code:
+1. Install the SQL Server (mssql) extension.
+2. Open this file in VS Code.
+3. Connect to your SQL Server practice database.
+4. Run the complete script from top to bottom.
 
 The setup section recreates demo Employees and Departments tables so every
 query has predictable results.

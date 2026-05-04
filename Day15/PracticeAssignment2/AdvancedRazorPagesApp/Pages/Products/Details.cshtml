@@ -1,0 +1,28 @@
+@page
+@model AdvancedRazorPagesApp.Pages.Products.DetailsModel
+@{
+    ViewData["Title"] = Model.Product is null ? "Product Not Found" : Model.Product.Name;
+}
+
+@if (Model.Product is null)
+{
+    <h1 class="h4">Product not found</h1>
+    <p class="text-muted">No product exists for the requested ID.</p>
+}
+else
+{
+    <h1 class="h3">@Model.Product.Name</h1>
+    <p>@Model.Product.Description</p>
+
+    <h2 class="h6">Categories</h2>
+    <ul>
+        @foreach (var category in Model.Product.Categories)
+        {
+            <li>
+                <a asp-page="/Products/Category" asp-route-categoryName="@category.Name">@category.Name</a>
+            </li>
+        }
+    </ul>
+}
+
+<a class="btn btn-outline-secondary" asp-page="/Products/Index">Back to Products</a>

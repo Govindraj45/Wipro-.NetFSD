@@ -1,0 +1,60 @@
+@page
+@model AdvancedRazorPagesApp.Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1 class="h3 mb-3">Products</h1>
+
+<div class="row g-4">
+    <section class="col-lg-5">
+        <h2 class="h5">Add Product</h2>
+        <form method="post" class="border rounded p-3 bg-light">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Product.ProductID" class="form-label"></label>
+                <input asp-for="Product.ProductID" class="form-control" />
+                <span asp-validation-for="Product.ProductID" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Product.Name" class="form-label"></label>
+                <input asp-for="Product.Name" class="form-control" />
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Product.Description" class="form-label"></label>
+                <textarea asp-for="Product.Description" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Product.Description" class="text-danger"></span>
+            </div>
+
+            <h3 class="h6">Categories</h3>
+            @for (var index = 0; index < Model.Product.Categories.Count; index++)
+            {
+                <div class="mb-2">
+                    <label asp-for="Product.Categories[index].Name" class="form-label">Category @(index + 1)</label>
+                    <input asp-for="Product.Categories[index].Name" class="form-control" />
+                    <span asp-validation-for="Product.Categories[index].Name" class="text-danger"></span>
+                </div>
+            }
+
+            <button type="submit" class="btn btn-primary mt-2">Add Product</button>
+        </form>
+    </section>
+
+    <section class="col-lg-7">
+        <h2 class="h5">Product List</h2>
+        <div class="list-group">
+            @foreach (var product in Model.Products)
+            {
+                <partial name="_ProductSummary" model="product" />
+            }
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

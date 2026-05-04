@@ -1,0 +1,21 @@
+@model AdvancedRazorPagesApp.Models.Product
+
+<article class="list-group-item">
+    <div class="d-flex justify-content-between gap-3">
+        <div>
+            <h3 class="h6 mb-1">@Model.Name</h3>
+            <p class="mb-2">@Model.Description</p>
+            <div class="d-flex flex-wrap gap-2">
+                @foreach (var category in Model.Categories)
+                {
+                    <a class="badge rounded-pill text-bg-secondary text-decoration-none"
+                       asp-page="/Products/Category"
+                       asp-route-categoryName="@category.Name">@category.Name</a>
+                }
+            </div>
+        </div>
+        <a class="btn btn-sm btn-outline-primary align-self-start"
+           asp-page="/Products/Details"
+           asp-route-id="@Model.ProductID">Details</a>
+    </div>
+</article>

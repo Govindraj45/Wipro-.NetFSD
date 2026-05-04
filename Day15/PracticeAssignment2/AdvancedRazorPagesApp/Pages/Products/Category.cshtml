@@ -1,0 +1,23 @@
+@page
+@model AdvancedRazorPagesApp.Pages.Products.CategoryModel
+@{
+    ViewData["Title"] = $"Category: {Model.CategoryName}";
+}
+
+<h1 class="h3">Category: @Model.CategoryName</h1>
+
+@if (Model.Products.Count == 0)
+{
+    <p class="text-muted">No products are assigned to this category.</p>
+}
+else
+{
+    <div class="list-group mb-3">
+        @foreach (var product in Model.Products)
+        {
+            <partial name="_ProductSummary" model="product" />
+        }
+    </div>
+}
+
+<a class="btn btn-outline-secondary" asp-page="/Products/Index">Back to Products</a>

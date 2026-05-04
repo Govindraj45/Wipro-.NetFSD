@@ -1,0 +1,34 @@
+@model Person
+@{
+    ViewData["Title"] = "Submitted Data";
+}
+
+<h1 class="h3 mb-3">Submitted Data</h1>
+
+<div class="border rounded p-3 bg-light">
+    <h2 class="h5">Person</h2>
+    <dl class="row">
+        <dt class="col-sm-3">First Name</dt>
+        <dd class="col-sm-9">@Model.FirstName</dd>
+
+        <dt class="col-sm-3">Last Name</dt>
+        <dd class="col-sm-9">@Model.LastName</dd>
+
+        <dt class="col-sm-3">Age</dt>
+        <dd class="col-sm-9">@Model.Age</dd>
+    </dl>
+
+    <h2 class="h5">Address</h2>
+    <dl class="row">
+        <dt class="col-sm-3">Street</dt>
+        <dd class="col-sm-9">@Model.Address.Street</dd>
+
+        <dt class="col-sm-3">City</dt>
+        <dd class="col-sm-9">@Model.Address.City</dd>
+
+        <dt class="col-sm-3">Zip Code</dt>
+        <dd class="col-sm-9">@Model.Address.ZipCode</dd>
+    </dl>
+</div>
+
+<a class="btn btn-outline-primary mt-3" asp-action="Index">Submit Another</a>

@@ -1,0 +1,114 @@
+@model MVCDemo.Models.Product
+
+@{
+    ViewData["Title"] = "Create Product - Validation Demo";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1>@ViewData["Title"]</h1>
+
+            <!-- Display validation errors -->
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger alert-dismissible fade show">
+                    <strong>Validation Errors:</strong>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                </div>
+            }
+
+            <form asp-action="Create" method="post" class="needs-validation" novalidate>
+                <!-- Anti-forgery token for security -->
+                @Html.AntiForgeryToken()
+
+                <div class="mb-3">
+                    <label asp-for="ProductName" class="form-label">Product Name *</label>
+                    <!-- TagHelper for form binding -->
+                    <input asp-for="ProductName" class="form-control" 
+                           placeholder="Enter product name (3-100 chars)" />
+                    <!-- Display validation message -->
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                    <small class="form-text text-muted">Required, 3-100 characters</small>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Price" class="form-label">Price (₹) *</label>
+                        <input asp-for="Price" type="number" step="0.01" class="form-control" 
+                               placeholder="Enter price" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                        <small class="form-text text-muted">Required, must be positive</small>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Stock" class="form-label">Stock Quantity *</label>
+                        <input asp-for="Stock" type="number" class="form-control" 
+                               placeholder="Enter stock" />
+                        <span asp-validation-for="Stock" class="text-danger"></span>
+                        <small class="form-text text-muted">Required, must be non-negative</small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Category" class="form-label">Category *</label>
+                    <select asp-for="Category" class="form-select">
+                        <option value="">-- Select Category --</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Books">Books</option>
+                        <option value="Home">Home & Garden</option>
+                        <option value="Sports">Sports</option>
+                    </select>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="4" 
+                              placeholder="Enter product description (optional)"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                    <small class="form-text text-muted">Max 500 characters</small>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-success">Create Product</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+
+            <div class="mt-4 p-3 bg-light rounded">
+                <h6>Validation Demonstration:</h6>
+                <ul>
+                    <li><strong>Data Annotations:</strong> [Required], [Range], [StringLength], [EmailAddress]</li>
+                    <li><strong>Server-side Validation:</strong> ModelState checks in controller</li>
+                    <li><strong>Client-side Validation:</strong> HTML5 + jQuery validation</li>
+                    <li><strong>Error Messages:</strong> Custom error messages with ErrorMessage property</li>
+                    <li><strong>TagHelpers:</strong> <code>asp-for</code>, <code>asp-validation-for</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Client-side validation
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var forms = document.querySelectorAll('.needs-validation');
+                Array.prototype.slice.call(forms).forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        }());
+    </script>
+}

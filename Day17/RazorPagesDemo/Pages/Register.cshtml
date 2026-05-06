@@ -1,0 +1,154 @@
+@page
+@model RazorPagesDemo.Pages.RegisterModel
+
+@{
+    ViewData["Title"] = "Student Registration - Property Binding Demo";
+}
+
+<div class="container mt-5">
+    <h1>@ViewData["Title"]</h1>
+
+    <!-- GET BINDING DEMO -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5>GET Binding Demo - Search Students</h5>
+        </div>
+        <div class="card-body">
+            <p class="text-muted">Use GET binding to get data from URL query string</p>
+            <form method="get" class="row g-3">
+                <div class="col-md-6">
+                    <label for="searchName" class="form-label">Search by Name</label>
+                    <!-- One-way binding: Display data from URL -->
+                    <input type="text" class="form-control" id="searchName" 
+                           name="SearchName" value="@Model.SearchName" 
+                           placeholder="Enter student name">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">&nbsp;</label>
+                    <button type="submit" class="btn btn-primary form-control">Search</button>
+                </div>
+            </form>
+
+            @if (Model.Students.Any())
+            {
+                <hr />
+                <h6>Search Results:</h6>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Age</th>
+                                <th>GPA</th>
+                                <th>Course</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var student in Model.Students)
+                            {
+                                <tr>
+                                    <td>@student.StudentId</td>
+                                    <td>@student.Name</td>
+                                    <td>@student.Email</td>
+                                    <td>@student.Age</td>
+                                    <td>@student.GPA</td>
+                                    <td>@student.Course</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else if (!string.IsNullOrEmpty(Model.SearchName))
+            {
+                <div class="alert alert-info mt-3">No students found matching "@Model.SearchName"</div>
+            }
+        </div>
+    </div>
+
+    <!-- POST BINDING DEMO -->
+    <div class="card">
+        <div class="card-header bg-success text-white">
+            <h5>POST Binding Demo - Register New Student</h5>
+        </div>
+        <div class="card-body">
+            <p class="text-muted">Use POST binding with asp-for TagHelper for two-way binding</p>
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="name" class="form-label">Student Name *</label>
+                        <!-- Two-way binding with asp-for -->
+                        <input asp-for="Student.Name" class="form-control" 
+                               id="name" placeholder="Enter full name" />
+                        <span asp-validation-for="Student.Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="email" class="form-label">Email *</label>
+                        <input asp-for="Student.Email" class="form-control" 
+                               id="email" type="email" placeholder="Enter email" />
+                        <span asp-validation-for="Student.Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="age" class="form-label">Age *</label>
+                        <input asp-for="Student.Age" class="form-control" 
+                               id="age" type="number" placeholder="18-65" />
+                        <span asp-validation-for="Student.Age" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="gpa" class="form-label">GPA *</label>
+                        <input asp-for="Student.GPA" class="form-control" 
+                               id="gpa" type="number" step="0.1" placeholder="0.0-4.0" />
+                        <span asp-validation-for="Student.GPA" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="course" class="form-label">Course *</label>
+                        <select asp-for="Student.Course" class="form-select" id="course">
+                            <option value="">-- Select Course --</option>
+                            <option value="CS">Computer Science</option>
+                            <option value="IT">Information Technology</option>
+                            <option value="ECE">Electronics & Communication</option>
+                            <option value="ME">Mechanical Engineering</option>
+                        </select>
+                        <span asp-validation-for="Student.Course" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="enrollDate" class="form-label">Enrollment Date</label>
+                        <input asp-for="Student.EnrollmentDate" class="form-control" 
+                               id="enrollDate" type="datetime-local" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-success">Register Student</button>
+                    <a href="/" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="mt-4 p-3 bg-light rounded">
+        <h6>Key Concepts:</h6>
+        <ul>
+            <li><strong>GET Binding:</strong> Uses @Html.Raw("<code>name=</code>") attribute to get data from URL query string</li>
+            <li><strong>POST Binding:</strong> Uses form submission to send data</li>
+            <li><strong>Two-way Binding:</strong> Uses <code>asp-for</code> TagHelper for automatic model binding</li>
+            <li><strong>@Html.Raw("[BindProperty]"):</strong> Automatic mapping between form and model</li>
+            <li><strong>Validation:</strong> Server-side validation via attributes, Client-side via HTML5</li>
+        </ul>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

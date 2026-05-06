@@ -1,0 +1,33 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center mt-5">
+    <h1 class="display-4">Student Registration Portal</h1>
+    <p class="lead">Please enter your name to register.</p>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="post">
+                        <div class="form-group mb-3 text-start">
+                            <label asp-for="StudentName" class="form-label">Name</label>
+                            <input asp-for="StudentName" class="form-control" placeholder="Enter your full name" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                </div>
+            </div>
+            
+            @if (!string.IsNullOrEmpty(Model.Message))
+            {
+                <div class="alert alert-success mt-4" role="alert">
+                    @Model.Message
+                </div>
+            }
+        </div>
+    </div>
+</div>

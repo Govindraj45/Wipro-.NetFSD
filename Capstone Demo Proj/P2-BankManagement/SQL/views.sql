@@ -1,0 +1,1 @@
+CREATE VIEW vw_HighBalance AS SELECT * FROM Accounts WHERE Balance > 10000;

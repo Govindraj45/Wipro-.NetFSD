@@ -1,0 +1,1 @@
+CREATE TRIGGER trg_AuditBooking ON Bookings AFTER INSERT AS PRINT 'Booking Added';

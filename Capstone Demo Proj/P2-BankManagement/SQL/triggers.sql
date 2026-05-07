@@ -1,0 +1,1 @@
+CREATE TRIGGER trg_AuditTxn ON Transactions AFTER INSERT AS BEGIN INSERT INTO AuditLogs (TableName, Operation) VALUES ('Transactions', 'INSERT'); END;

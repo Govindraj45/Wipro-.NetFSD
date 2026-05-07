@@ -1,0 +1,1 @@
+CREATE VIEW vw_AvailableProps AS SELECT * FROM Properties WHERE Status = 'Available';

@@ -1,0 +1,1 @@
+CREATE FUNCTION fn_SeatsLeft(@sid INT) RETURNS INT AS BEGIN DECLARE @s INT; SELECT @s = SeatsAvailable FROM Shows WHERE ShowID = @sid; RETURN @s; END;

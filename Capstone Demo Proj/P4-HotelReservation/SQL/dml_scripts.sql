@@ -1,0 +1,1 @@
+INSERT INTO Guests VALUES (1, 'Tom'); INSERT INTO Rooms VALUES (101, 'Deluxe', 200.0, 1);

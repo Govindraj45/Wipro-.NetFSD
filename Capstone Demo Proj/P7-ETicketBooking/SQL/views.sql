@@ -1,0 +1,1 @@
+CREATE VIEW vw_ShowsAvailable AS SELECT * FROM Shows WHERE SeatsAvailable > 0;

@@ -1,0 +1,1 @@
+CREATE VIEW vw_EventCapacity AS SELECT EventName, Capacity FROM Events;

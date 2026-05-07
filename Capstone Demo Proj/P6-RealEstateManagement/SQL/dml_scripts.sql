@@ -1,0 +1,1 @@
+INSERT INTO Properties VALUES (1, '123 Main St', 500000.0, 'Available');

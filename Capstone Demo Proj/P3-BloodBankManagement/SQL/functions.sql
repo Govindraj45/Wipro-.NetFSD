@@ -1,0 +1,1 @@
+CREATE FUNCTION fn_GetStock(@bg VARCHAR(5)) RETURNS INT AS BEGIN DECLARE @s INT; SELECT @s = UnitsAvailable FROM Inventory WHERE BloodGroup = @bg; RETURN @s; END;

@@ -1,0 +1,1 @@
+INSERT INTO Events VALUES (1, 'Tech Conference', 100);

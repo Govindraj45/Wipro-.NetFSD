@@ -1,0 +1,1 @@
+CREATE FUNCTION fn_GetCapacity(@eid INT) RETURNS INT AS BEGIN DECLARE @c INT; SELECT @c = Capacity FROM Events WHERE EventID = @eid; RETURN @c; END;

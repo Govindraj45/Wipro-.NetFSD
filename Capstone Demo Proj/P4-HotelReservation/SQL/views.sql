@@ -1,0 +1,1 @@
+CREATE VIEW vw_AvailableRooms AS SELECT * FROM Rooms WHERE IsAvailable = 1;

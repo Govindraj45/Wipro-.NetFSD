@@ -1,0 +1,1 @@
+CREATE FUNCTION fn_GetBalance(@acc INT) RETURNS DECIMAL AS BEGIN DECLARE @b DECIMAL; SELECT @b = Balance FROM Accounts WHERE AccountID = @acc; RETURN @b; END;

@@ -1,0 +1,1 @@
+CREATE TRIGGER trg_UpdateRoom ON Reservations AFTER INSERT AS BEGIN UPDATE Rooms SET IsAvailable = 0 WHERE RoomID IN (SELECT RoomID FROM inserted); END;

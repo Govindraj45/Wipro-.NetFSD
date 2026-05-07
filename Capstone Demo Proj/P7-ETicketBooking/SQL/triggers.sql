@@ -1,0 +1,1 @@
+CREATE TRIGGER trg_TicketBooked ON Tickets AFTER INSERT AS BEGIN UPDATE Shows SET SeatsAvailable = SeatsAvailable - 1 WHERE ShowID IN (SELECT ShowID FROM inserted); END;

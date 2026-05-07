@@ -1,0 +1,1 @@
+CREATE VIEW vw_LowStock AS SELECT * FROM Inventory WHERE UnitsAvailable < 10;

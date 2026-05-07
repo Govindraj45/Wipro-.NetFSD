@@ -1,0 +1,1 @@
+CREATE TRIGGER trg_PropSold ON Transactions AFTER INSERT AS BEGIN UPDATE Properties SET Status = 'Sold' WHERE PropID IN (SELECT PropID FROM inserted); END;

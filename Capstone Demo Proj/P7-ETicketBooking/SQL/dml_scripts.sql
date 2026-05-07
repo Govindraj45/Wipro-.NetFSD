@@ -1,0 +1,1 @@
+INSERT INTO Shows VALUES (1, 'Avengers', 50);

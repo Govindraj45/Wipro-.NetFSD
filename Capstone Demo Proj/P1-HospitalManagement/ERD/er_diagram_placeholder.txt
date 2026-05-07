@@ -1,2 +1,0 @@
-[Placeholder for ER Diagram]
-Please use an ERD Tool like Draw.io or Visual Paradigm to generate the ER diagram mapping Patients -> Appointments <- Doctors, Appointments -> Treatments -> Billing, and export it as er_diagram.png in this folder.

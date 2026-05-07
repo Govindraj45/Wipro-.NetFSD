@@ -1,0 +1,54 @@
+@model CourseRegistrationPortal.Models.Student
+@{
+    ViewData["Title"] = "Course Registration";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4">Online Course Registration Portal</h2>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form asp-action="Register" method="post">
+                    
+                    <!-- General Validation Summary (Optional, but good practice) -->
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label fw-bold">Full Name:</label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Age" class="form-label fw-bold">Age:</label>
+                        <input asp-for="Age" type="number" class="form-control" />
+                        <span asp-validation-for="Age" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-bold">Email Address:</label>
+                        <input asp-for="Email" type="email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="SelectedCourse" class="form-label fw-bold">Select Course:</label>
+                        <select asp-for="SelectedCourse" class="form-select">
+                            <option value="">-- Select a Course --</option>
+                            <option value="C# Basics">C# Basics</option>
+                            <option value="ASP.NET Core MVC">ASP.NET Core MVC</option>
+                            <option value="Web API Development">Web API Development</option>
+                        </select>
+                        <span asp-validation-for="SelectedCourse" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

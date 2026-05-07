@@ -1,0 +1,50 @@
+@page
+@model RazorPagesDemos.Pages.EmployeeFeedbackModel
+@{
+    ViewData["Title"] = "Employee Feedback";
+}
+
+<div class="text-center">
+    <h2 class="display-4">Employee Feedback Portal</h2>
+    <p>Please provide your valuable feedback.</p>
+</div>
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                @if (Model.ConfirmationMessage != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @Model.ConfirmationMessage
+                    </div>
+                }
+                else
+                {
+                    <form method="post">
+                        <!-- One-Way Binding: Displaying data from Backend to UI -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Employee Name:</label>
+                            <input type="text" class="form-control" value="@Model.EmployeeName" readonly />
+                            <small class="text-muted">This field is read-only (One-Way Binding).</small>
+                        </div>
+
+                        <!-- Two-Way Binding: Sending data from UI to Backend -->
+                        <div class="mb-3">
+                            <label asp-for="Feedback" class="form-label fw-bold">Your Feedback:</label>
+                            <textarea asp-for="Feedback" class="form-control" rows="5" placeholder="Enter your feedback here..."></textarea>
+                            <!-- Client-Side / Server-Side Validation Output -->
+                            <span asp-validation-for="Feedback" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Submit Feedback</button>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

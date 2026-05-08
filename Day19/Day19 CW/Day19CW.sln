@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineFoodDeliveryPortal", "OnlineFoodDeliveryPortal\OnlineFoodDeliveryPortal.csproj", "{00569572-C3B3-4E21-B117-26100CCE51B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExamPortal", "OnlineExamPortal\OnlineExamPortal.csproj", "{0337FEBB-D676-44E8-B277-7A46AC1DC99D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00569572-C3B3-4E21-B117-26100CCE51B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00569572-C3B3-4E21-B117-26100CCE51B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00569572-C3B3-4E21-B117-26100CCE51B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00569572-C3B3-4E21-B117-26100CCE51B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0337FEBB-D676-44E8-B277-7A46AC1DC99D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0337FEBB-D676-44E8-B277-7A46AC1DC99D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0337FEBB-D676-44E8-B277-7A46AC1DC99D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0337FEBB-D676-44E8-B277-7A46AC1DC99D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

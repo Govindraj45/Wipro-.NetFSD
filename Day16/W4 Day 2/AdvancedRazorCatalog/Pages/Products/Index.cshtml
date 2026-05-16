@@ -1,0 +1,19 @@
+@page
+@model AdvancedRazorCatalog.Pages.Products.IndexModel
+
+<h1>Advanced Razor Catalog</h1>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Input.Name" placeholder="Product name" />
+    <span asp-validation-for="Input.Name"></span>
+    <textarea asp-for="Input.Description" placeholder="Description"></textarea>
+    <input asp-for="Input.Categories[0].Name" placeholder="Category 1" />
+    <input asp-for="Input.Categories[1].Name" placeholder="Category 2" />
+    <button type="submit">Add Product</button>
+</form>
+
+@foreach (var product in Model.Products)
+{
+    <partial name="_ProductSummary" model="product" />
+}

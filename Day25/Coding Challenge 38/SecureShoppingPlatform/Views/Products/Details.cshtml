@@ -1,0 +1,33 @@
+@model Product
+@{
+    var reviewInput = (ReviewInputModel)ViewBag.ReviewInput;
+}
+
+<h1>@Model.Name</h1>
+<p>@Model.Description</p>
+<p><strong>Price:</strong> @Model.Price.ToString("C")</p>
+
+<h2>Reviews</h2>
+@if (!Model.Reviews.Any())
+{
+    <p>No reviews yet.</p>
+}
+else
+{
+    <ul>
+    @foreach (var review in Model.Reviews)
+    {
+        <li>@review</li>
+    }
+    </ul>
+}
+
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <form asp-action="Review" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="@reviewInput.ProductId" name="ProductId" />
+        <textarea name="Comment" placeholder="Leave feedback"></textarea>
+        <button type="submit">Submit Review</button>
+    </form>
+}

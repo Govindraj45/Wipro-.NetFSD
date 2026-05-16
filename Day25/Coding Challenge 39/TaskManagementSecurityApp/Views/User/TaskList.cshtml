@@ -1,0 +1,12 @@
+@model IReadOnlyList<TaskItem>
+
+<h1>My Tasks</h1>
+<ul>
+@foreach (var task in Model)
+{
+    <li>
+        <strong>@task.Title</strong> - @task.Description
+        <a asp-action="EditTask" asp-route-id="@task.Id">Edit</a>
+    </li>
+}
+</ul>

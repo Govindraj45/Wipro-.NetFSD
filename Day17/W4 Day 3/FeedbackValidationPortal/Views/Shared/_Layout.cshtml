@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feedback Validation Portal</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        nav { display: flex; gap: 1rem; margin-bottom: 1rem; }
+        input, textarea, select, button { display: block; padding: .55rem; margin: .35rem 0; width: 100%; max-width: 460px; }
+        .field-validation-error, .validation-summary-errors { color: #b42318; }
+        .card { border: 1px solid #ddd; padding: 1rem; margin: .75rem 0; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a asp-controller="Feedback" asp-action="Index">Feedback Form</a>
+        <a asp-controller="Feedback" asp-action="Submissions">Submitted Feedback</a>
+        <a asp-page="/Account/Register">Register</a>
+    </nav>
+    @RenderBody()
+</body>
+</html>

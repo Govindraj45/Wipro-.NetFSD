@@ -1,0 +1,12 @@
+@page
+@model OnlineBookstoreApp.Pages.Account.LoginModel
+
+<h1>Login</h1>
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Input.UserName" placeholder="Username" />
+    <span asp-validation-for="Input.UserName"></span>
+    <input asp-for="Input.Password" placeholder="Password" />
+    <span asp-validation-for="Input.Password"></span>
+    <button type="submit">Login</button>
+</form>

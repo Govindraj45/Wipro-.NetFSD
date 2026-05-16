@@ -1,0 +1,21 @@
+@model IReadOnlyList<OnlineBookstoreApp.Models.Book>
+
+<h1>Book Catalog</h1>
+<table>
+    <thead>
+    <tr><th>Title</th><th>Author</th><th>Price</th><th></th></tr>
+    </thead>
+    <tbody>
+    @foreach (var book in Model)
+    {
+        <tr>
+            <td>@book.Title</td>
+            <td>@book.Author</td>
+            <td>@book.Price.ToString("C")</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@book.Id">View</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

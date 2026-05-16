@@ -1,0 +1,12 @@
+@model IReadOnlyList<Product>
+
+<h1>Products</h1>
+<ul>
+@foreach (var product in Model)
+{
+    <li>
+        <a asp-action="Details" asp-route-id="@product.Id">@product.Name</a>
+        <span> - @product.Price.ToString("C")</span>
+    </li>
+}
+</ul>

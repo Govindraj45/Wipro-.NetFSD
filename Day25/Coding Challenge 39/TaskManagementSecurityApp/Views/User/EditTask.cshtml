@@ -1,0 +1,14 @@
+@model TaskItem
+
+<h1>Edit Task</h1>
+<form method="post">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Id" type="hidden" />
+    <input asp-for="OwnerUserName" type="hidden" />
+    <input asp-for="Title" placeholder="Title" />
+    <span asp-validation-for="Title"></span>
+    <textarea asp-for="Description" placeholder="Description"></textarea>
+    <span asp-validation-for="Description"></span>
+    <button type="submit">Save</button>
+</form>

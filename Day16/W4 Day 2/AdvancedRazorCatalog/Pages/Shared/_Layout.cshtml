@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Advanced Razor Catalog</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        nav { display: flex; gap: 1rem; margin-bottom: 1rem; }
+        input, button, textarea { display: block; padding: .5rem; margin: .35rem 0; width: 100%; max-width: 420px; }
+        .card { border: 1px solid #ddd; padding: 1rem; margin: .75rem 0; }
+        .field-validation-error, .validation-summary-errors { color: #b42318; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a asp-page="/Products/Index">Products</a>
+        <a asp-page="/Products/ByCategory" asp-route-slug="electronics">Electronics</a>
+    </nav>
+    @RenderBody()
+</body>
+</html>

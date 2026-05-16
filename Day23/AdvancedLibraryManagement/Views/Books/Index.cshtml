@@ -1,0 +1,159 @@
+<h1>Advanced Library Management</h1>
+
+<section>
+    <h2>Add Book</h2>
+    <form id="book-form">
+        <input id="title" name="title" placeholder="Book title" required />
+        <select id="authorId" name="authorId" required>
+        </select>
+        <select id="genreIds" name="genreIds" multiple size="3">
+        </select>
+        <button type="submit">Save</button>
+    </form>
+    <p id="error" class="error"></p>
+</section>
+
+<section>
+    <h2>Add Lookup Data</h2>
+    <form id="author-form">
+        <input id="author-name" placeholder="Author name" required />
+        <button type="submit">Add Author</button>
+    </form>
+    <form id="genre-form">
+        <input id="genre-name" placeholder="Genre name" required />
+        <button type="submit">Add Genre</button>
+    </form>
+</section>
+
+<section>
+    <div class="toolbar">
+        <input id="search" placeholder="Search title or author" />
+        <button id="refresh" type="button">Refresh</button>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genres</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="books"></tbody>
+    </table>
+</section>
+
+<script>
+const booksBody = document.querySelector("#books");
+const error = document.querySelector("#error");
+
+async function loadLookups() {
+    const [authors, genres] = await Promise.all([
+        fetch("/api/authors").then(response => response.json()),
+        fetch("/api/genres").then(response => response.json())
+    ]);
+
+    document.querySelector("#authorId").innerHTML = authors
+        .map(author => `<option value="${author.id}">${author.name}</option>`)
+        .join("");
+
+    document.querySelector("#genreIds").innerHTML = genres
+        .map(genre => `<option value="${genre.id}">${genre.name}</option>`)
+        .join("");
+}
+
+async function loadBooks() {
+    const search = encodeURIComponent(document.querySelector("#search").value);
+    const response = await fetch(`/api/books?search=${search}`);
+    const books = await response.json();
+
+    booksBody.innerHTML = books.map(book => `
+        <tr>
+            <td>${book.title}</td>
+            <td>${book.author}</td>
+            <td>${book.genres.join(", ")}</td>
+            <td><button type="button" data-id="${book.id}">Delete</button></td>
+        </tr>
+    `).join("");
+}
+
+document.querySelector("#book-form").addEventListener("submit", async event => {
+    event.preventDefault();
+    error.textContent = "";
+
+    const selectedGenres = [...document.querySelector("#genreIds").selectedOptions].map(option => Number(option.value));
+    const payload = {
+        title: document.querySelector("#title").value,
+        authorId: Number(document.querySelector("#authorId").value),
+        genreIds: selectedGenres
+    };
+
+    const response = await fetch("/api/books", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+        const problem = await response.json();
+        error.textContent = problem.message ?? "Save failed.";
+        return;
+    }
+
+    event.target.reset();
+    await loadBooks();
+});
+
+document.querySelector("#author-form").addEventListener("submit", async event => {
+    event.preventDefault();
+    const name = document.querySelector("#author-name").value;
+    const response = await fetch("/api/authors", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name })
+    });
+
+    if (!response.ok) {
+        error.textContent = "Author save failed.";
+        return;
+    }
+
+    event.target.reset();
+    await loadLookups();
+});
+
+document.querySelector("#genre-form").addEventListener("submit", async event => {
+    event.preventDefault();
+    const name = document.querySelector("#genre-name").value;
+    const response = await fetch("/api/genres", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name })
+    });
+
+    if (!response.ok) {
+        error.textContent = "Genre save failed.";
+        return;
+    }
+
+    event.target.reset();
+    await loadLookups();
+});
+
+booksBody.addEventListener("click", async event => {
+    const button = event.target.closest("button[data-id]");
+    if (!button) return;
+
+    const response = await fetch(`/api/books/${button.dataset.id}`, { method: "DELETE" });
+    if (!response.ok) {
+        error.textContent = "Delete failed.";
+        return;
+    }
+
+    await loadBooks();
+});
+
+document.querySelector("#refresh").addEventListener("click", loadBooks);
+document.querySelector("#search").addEventListener("input", loadBooks);
+loadLookups().then(loadBooks);
+</script>

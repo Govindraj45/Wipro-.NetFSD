@@ -1,0 +1,21 @@
+@model FeedbackInputModel
+@{
+    var ratings = (IReadOnlyList<SelectListItem>)ViewBag.Ratings;
+}
+
+<h1>Customer Feedback Portal</h1>
+
+<form asp-action="Submit" method="post">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="All"></div>
+    @Html.StyledInputFor(model => model.Name, "Your name", "styled-input")
+    <span asp-validation-for="Name"></span>
+    @Html.TextBoxFor(model => model.Email, new { placeholder = "Email address" })
+    <span asp-validation-for="Email"></span>
+    @Html.DropDownListFor(model => model.Rating, ratings, "Choose a rating")
+    <span asp-validation-for="Rating"></span>
+    @Html.TextAreaFor(model => model.Comments, new { placeholder = "Share your comments" })
+    <span asp-validation-for="Comments"></span>
+    <rating-stars selected="@Model.Rating" name="Rating"></rating-stars>
+    <button type="submit">Submit Feedback</button>
+</form>

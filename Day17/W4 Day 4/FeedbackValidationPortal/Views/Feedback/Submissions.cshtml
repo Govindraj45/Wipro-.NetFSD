@@ -1,0 +1,20 @@
+@model IReadOnlyList<FeedbackInputModel>
+
+<h1>Submitted Feedback</h1>
+
+@if (!Model.Any())
+{
+    <p>No feedback submitted yet.</p>
+}
+else
+{
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <h2>@item.Name</h2>
+            <p><strong>Email:</strong> @item.Email</p>
+            <p><strong>Rating:</strong> @item.Rating</p>
+            <p>@item.Comments</p>
+        </div>
+    }
+}

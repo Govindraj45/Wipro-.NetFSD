@@ -1,0 +1,18 @@
+@model IReadOnlyList<TaskItem>
+
+<h1>Admin Manage Tasks</h1>
+<table>
+    <thead>
+    <tr><th>Owner</th><th>Title</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+    @foreach (var task in Model)
+    {
+        <tr>
+            <td>@task.OwnerUserName</td>
+            <td>@task.Title</td>
+            <td>@task.Description</td>
+        </tr>
+    }
+    </tbody>
+</table>

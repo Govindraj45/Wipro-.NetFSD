@@ -1,0 +1,6 @@
+@model PersonInputModel
+
+<h1>Submitted Data</h1>
+<p><strong>Name:</strong> @Model.FirstName @Model.LastName</p>
+<p><strong>Age:</strong> @Model.Age</p>
+<p><strong>Address:</strong> @Model.Address.Street, @Model.Address.City, @Model.Address.ZipCode</p>

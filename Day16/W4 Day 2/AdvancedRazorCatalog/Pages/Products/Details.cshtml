@@ -1,0 +1,13 @@
+@page "{id:int}"
+@model AdvancedRazorCatalog.Pages.Products.DetailsModel
+
+@if (Model.Product is null)
+{
+    <h1>Product not found</h1>
+}
+else
+{
+    <h1>@Model.Product.Name</h1>
+    <p>@Model.Product.Description</p>
+    <p><strong>Categories:</strong> @string.Join(", ", Model.Product.Categories.Select(category => category.Name))</p>
+}

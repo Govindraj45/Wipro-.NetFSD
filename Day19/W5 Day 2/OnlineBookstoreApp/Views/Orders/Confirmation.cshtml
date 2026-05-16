@@ -1,0 +1,5 @@
+@model OnlineBookstoreApp.Models.OrderSummary
+
+<h1>Order Confirmed</h1>
+<p>Your order for @Model.Items.Count item(s) has been placed.</p>
+<p><strong>Charged:</strong> @Model.Total.ToString("C")</p>

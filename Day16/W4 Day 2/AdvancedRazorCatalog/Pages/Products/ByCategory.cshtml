@@ -1,0 +1,9 @@
+@page "{slug}"
+@model AdvancedRazorCatalog.Pages.Products.ByCategoryModel
+
+<h1>Category: @Model.Slug</h1>
+
+@foreach (var product in Model.Products)
+{
+    <partial name="_ProductSummary" model="product" />
+}

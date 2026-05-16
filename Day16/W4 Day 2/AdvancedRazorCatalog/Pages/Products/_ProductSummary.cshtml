@@ -1,0 +1,8 @@
+@model AdvancedRazorCatalog.Models.Product
+
+<div class="card">
+    <h2>@Model.Name</h2>
+    <p>@Model.Description</p>
+    <p><strong>Categories:</strong> @string.Join(", ", Model.Categories.Select(category => category.Name))</p>
+    <a asp-page="/Products/Details" asp-route-id="@Model.ProductId">View details</a>
+</div>

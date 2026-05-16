@@ -1,0 +1,14 @@
+@page
+@model OnlineBookstoreApp.Pages.Account.RegisterModel
+
+<h1>Register</h1>
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Input.UserName" placeholder="Username" />
+    <span asp-validation-for="Input.UserName"></span>
+    <input asp-for="Input.Email" placeholder="Email" />
+    <span asp-validation-for="Input.Email"></span>
+    <input asp-for="Input.Password" placeholder="Password" />
+    <span asp-validation-for="Input.Password"></span>
+    <button type="submit">Create Account</button>
+</form>

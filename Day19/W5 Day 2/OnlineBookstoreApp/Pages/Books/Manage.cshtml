@@ -1,0 +1,45 @@
+@page
+@model OnlineBookstoreApp.Pages.Books.ManageModel
+
+<h1>Manage Inventory</h1>
+
+<form method="post" asp-page-handler="Save">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Input.Id" type="hidden" />
+    <input asp-for="Input.Title" placeholder="Title" />
+    <span asp-validation-for="Input.Title"></span>
+    <input asp-for="Input.Author" placeholder="Author" />
+    <span asp-validation-for="Input.Author"></span>
+    <input asp-for="Input.Isbn" placeholder="ISBN" />
+    <span asp-validation-for="Input.Isbn"></span>
+    <input asp-for="Input.Price" placeholder="Price" />
+    <span asp-validation-for="Input.Price"></span>
+    <textarea asp-for="Input.Description" placeholder="Description"></textarea>
+    <button type="submit">Save Book</button>
+</form>
+
+<table>
+    <thead>
+    <tr><th>Title</th><th>Author</th><th>ISBN</th><th></th></tr>
+    </thead>
+    <tbody>
+    @foreach (var book in Model.Books)
+    {
+        <tr>
+            <td>@book.Title</td>
+            <td>@book.Author</td>
+            <td>@book.Isbn</td>
+            <td>
+                <form method="post" asp-page-handler="Edit" style="display:inline">
+                    <input type="hidden" name="id" value="@book.Id" />
+                    <button type="submit">Edit</button>
+                </form>
+                <form method="post" asp-page-handler="Delete" style="display:inline">
+                    <input type="hidden" name="id" value="@book.Id" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

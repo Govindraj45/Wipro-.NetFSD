@@ -1,0 +1,19 @@
+@page
+@model FeedbackValidationPortal.Pages.Account.RegisterModel
+
+<h1>Registration and Validation</h1>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <input asp-for="Input.Username" placeholder="Username" />
+    <span asp-validation-for="Input.Username"></span>
+    <input asp-for="Input.Email" placeholder="Email" />
+    <span asp-validation-for="Input.Email"></span>
+    <input asp-for="Input.Password" placeholder="Password" />
+    <span asp-validation-for="Input.Password"></span>
+    <input asp-for="Input.ConfirmPassword" placeholder="Confirm password" />
+    <span asp-validation-for="Input.ConfirmPassword"></span>
+    <button type="submit">Register</button>
+</form>
+
+<partial name="_ValidationScriptsPartial" />

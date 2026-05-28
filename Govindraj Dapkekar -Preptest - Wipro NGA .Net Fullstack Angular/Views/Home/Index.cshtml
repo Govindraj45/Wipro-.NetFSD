@@ -1,0 +1,91 @@
+@{
+    ViewData["Title"] = "Secure Portal Home";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-9">
+        <div class="card-premium">
+            <div class="card-header-premium text-center">
+                <h2 class="mb-1">Secure Authorization Portal</h2>
+                <small class="text-white-50">Wipro NGA PrepTest Milestone 3 Assignment</small>
+            </div>
+            
+            <div class="p-3">
+                <h4 class="text-dark font-weight-bold mb-3">Project Security Architecture Overview</h4>
+                <p class="text-muted">
+                    This ASP.NET Core MVC application demonstrates industry-standard security implementations 
+                    and role-based access control (RBAC). The following security measures have been successfully integrated:
+                </p>
+                
+                <div class="row g-4 mt-2">
+                    <div class="col-md-6">
+                        <div class="security-demo-box h-100">
+                            <h6 class="font-weight-bold text-primary"><i class="bi bi-shield-fill-check"></i> Identity & Authentication</h6>
+                            <p class="text-muted small mb-0">
+                                Powered by <strong>ASP.NET Core Identity</strong> and <strong>EF Core SQLite</strong>. 
+                                Passwords are automatically salted and hashed securely using PBKDF2.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="security-demo-box h-100">
+                            <h6 class="font-weight-bold text-primary"><i class="bi bi-shield-lock-fill"></i> Role-Based Access Control</h6>
+                            <p class="text-muted small mb-0">
+                                Implements granular <code>[Authorize(Roles = "...")]</code> routing. 
+                                Admins have access to the Dashboard while Users are restricted to their profile.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="security-demo-box h-100">
+                            <h6 class="font-weight-bold text-primary"><i class="bi bi-key-fill"></i> Data Protection APIs</h6>
+                            <p class="text-muted small mb-0">
+                                Uses the <strong>Data Protection Provider</strong> to protect and unprotect sensitive 
+                                data (e.g. contact addresses or SSNs) stored in memory or cookies.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="security-demo-box h-100">
+                            <h6 class="font-weight-bold text-primary"><i class="bi bi-patch-check-fill"></i> CSRF & HTTPS Protection</h6>
+                            <p class="text-muted small mb-0">
+                                Enforces HTTPS globally with <code>RequireHttpsAttribute</code> and <code>app.UseHttpsRedirection()</code>. 
+                                Generates and validates <strong>AntiForgeryTokens</strong> on all state-changing forms.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-5">
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        <p class="text-success font-weight-bold">
+                            You are logged in as <strong>@User.Identity.Name</strong>
+                        </p>
+                        <div class="d-flex justify-content-center gap-3">
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-controller="Admin" asp-action="Dashboard" class="btn-premium">Go to Admin Dashboard</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Account" asp-action="UserProfile" class="btn-premium">Go to User Profile</a>
+                            }
+                            <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-outline-danger py-2 px-4">Logout</button>
+                            </form>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-muted mb-3">Please authenticate to access role-specific dashboards.</p>
+                        <a asp-controller="Account" asp-action="Login" class="btn-premium px-5">Access Secure Portal</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

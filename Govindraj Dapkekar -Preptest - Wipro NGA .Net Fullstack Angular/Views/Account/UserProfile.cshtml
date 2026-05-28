@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "User Profile";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card-premium">
+            <div class="card-header-premium">
+                <h3 class="mb-0">User Profile Portal</h3>
+            </div>
+            
+            <div class="alert alert-premium-success">
+                @ViewBag.Message
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h5 class="text-secondary font-weight-bold">Account Details</h5>
+                    <hr />
+                    <table class="table table-borderless">
+                        <tr>
+                            <td class="font-weight-bold text-muted" style="width: 120px; padding: 5px 0;">Username:</td>
+                            <td style="padding: 5px 0;">@User.Identity?.Name</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-muted" style="padding: 5px 0;">Assigned Role:</td>
+                            <td style="padding: 5px 0;"><span class="badge-role-user">User</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold text-muted" style="padding: 5px 0;">Auth State:</td>
+                            <td style="padding: 5px 0;" class="text-success">Authenticated via ASP.NET Core Identity</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="col-md-6">
+                    <h5 class="text-secondary font-weight-bold">Data Protection Demonstration</h5>
+                    <hr />
+                    <p class="text-muted small">
+                        Below is a live demonstration of sensitive user data secured using the <strong>ASP.NET Core Data Protection API</strong>.
+                    </p>
+                    <div class="security-demo-box bg-light border p-3 rounded">
+                        <strong class="text-muted d-block mb-1">Encrypted Payload (Secured in storage):</strong>
+                        <div class="code-display mb-3 text-break" style="font-size: 0.8rem;">
+                            @ViewBag.EncryptedSensitiveData
+                        </div>
+                        
+                        <strong class="text-muted d-block mb-1">Decrypted Payload (Shown to Authorized User):</strong>
+                        <div class="text-success font-weight-bold">
+                            @ViewBag.DecryptedSensitiveData
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-end mt-4">
+                <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-outline-danger">Secure Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

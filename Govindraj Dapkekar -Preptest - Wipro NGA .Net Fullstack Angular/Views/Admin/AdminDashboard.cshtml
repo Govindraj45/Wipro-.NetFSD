@@ -1,0 +1,60 @@
+@model IEnumerable<PrepTestMilestone3.Controllers.UserRoleViewModel>
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="card-premium">
+    <div class="card-header-premium">
+        <h3 class="mb-0">Administrative Control Panel</h3>
+    </div>
+    
+    <div class="alert alert-premium-success">
+        @ViewBag.Message
+    </div>
+    
+    <div class="mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="text-secondary font-weight-bold">Registered User Accounts</h4>
+            <span class="badge bg-secondary">@Model.Count() Total Users</span>
+        </div>
+        <hr />
+        
+        <div class="table-responsive">
+            <table class="table-premium">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Roles</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td><code style="font-size: 0.85rem;">@user.UserId</code></td>
+                            <td class="font-weight-bold">@user.Username</td>
+                            <td>@user.Email</td>
+                            <td>
+                                @if (user.Roles.Contains("Admin"))
+                                {
+                                    <span class="badge-role-admin">Admin</span>
+                                }
+                                else
+                                {
+                                    <span class="badge-role-user">User</span>
+                                }
+                            </td>
+                            <td>
+                                <span class="text-success" style="font-size: 0.9rem;">Active</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

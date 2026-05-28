@@ -1,0 +1,55 @@
+@model PrepTestMilestone3.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Secure Login";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card-premium">
+            <div class="card-header-premium text-center">
+                <h3 class="mb-0">Secure Portal Login</h3>
+                <small class="text-white-50">Please enter your credentials to authenticate</small>
+            </div>
+            
+            <form asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                
+                <div class="form-group mb-3">
+                    <label asp-for="Username" class="form-label font-weight-bold"></label>
+                    <input asp-for="Username" class="form-control" placeholder="Enter username" autocomplete="username" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label asp-for="Password" class="form-label font-weight-bold"></label>
+                    <input asp-for="Password" class="form-control" placeholder="Enter password" autocomplete="current-password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group mb-4 form-check">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label asp-for="RememberMe" class="form-check-label"></label>
+                </div>
+                
+                <div class="d-grid">
+                    <button type="submit" class="btn-premium">Authenticate</button>
+                </div>
+            </form>
+
+            <div class="security-demo-box mt-4">
+                <h6 class="text-secondary font-weight-bold">Testing Credentials</h6>
+                <hr class="my-2" />
+                <p class="mb-1 text-muted"><strong>Admin Role:</strong></p>
+                <code class="code-display d-block mb-2">Username: admin / Password: Admin@123</code>
+                
+                <p class="mb-1 text-muted"><strong>User Role:</strong></p>
+                <code class="code-display d-block">Username: user1 / Password: User@123</code>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
